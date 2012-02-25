@@ -16,20 +16,20 @@ Start with **pattern()** and end  with **matching()**.
 ```coffeescript
 pattern = require 'pattern-js'
 todo = pattern()
-    .value("Mon", () -> go work)
-    .value("Tue", () -> go work)
-    .value("Thu", () -> go work)
+    .value("Mon", -> go work)
+    .value("Tue", -> go relax)
+    .value("Thu", -> go icefishing)
     .when(
         (val) -> val is "Fri" or val is "Sat"
         (day) ->
             if day is bingoDay
                 go bingo
                 go dancing)
-    .value("Sun", () -> go church)
-    .any(() -> go work)
+    .value("Sun", -> go church)
+    .any(-> go work)
     .matching()
 
-todo "Mon" # go work
+todo "Tue" # go relax
 ```
 
 #### JavaScript ####
@@ -68,14 +68,14 @@ todo("Fri") // usage
 
 ```coffeescript
 detectZeroTuple = pattern()
-    .value([0, 0], () -> console.log "Both zero")
+    .value([0, 0], -> console.log "Both zero")
     .some(
         [0, undefined]
         (var1, var2) -> console.log "First value is 0 in (0, #{ var2 })")
     .some(
         [undefined, 0]
         (var1, var2) -> console.log "Second value is 0 in (#{ var1 }, 0)")
-    .any(() -> console.log "Both nonzero.")
+    .any(-> console.log "Both nonzero.")
     .matching()
 detectZeroTuple 0, 0
 detectZeroTuple 1, 0
@@ -88,8 +88,10 @@ detectZeroTuple 10, 15
 ```js
 var detectZeroTuple = pattern()
     .value([0, 0], function() { console.log("Both zero"); })
-    .some([0, undefined], function(var1, var2) { console.log("First value is 0 in (0, " + var2 + ")"); })
-    .some([, 0], function(var1, var2) { console.log("Second value is 0 in (" + var1 + ", 0)"); })
+    .some([0, undefined],
+            function(var1, var2) { console.log("First value is 0 in (0, " + var2 + ")"); })
+    .some([, 0],
+            function(var1, var2) { console.log("Second value is 0 in (" + var1 + ", 0)"); })
     .any(function() { console.log("Both nonzero."); })
     .matching();
 detectZeroTuple(0, 0);
