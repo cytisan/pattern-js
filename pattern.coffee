@@ -89,7 +89,7 @@ PatternMatching::some = (patterns, exp) ->
         else
             (val) -> isEqual val, pattern
     predicates = (getPredicate p for p in patterns)
-    @.when(predicates, (val) -> exp(val))
+    @.when(predicates, exp)
 
 pattern = () ->
     new PatternMatching (inner) ->

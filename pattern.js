@@ -162,9 +162,7 @@
       }
       return _results;
     })();
-    return this.when(predicates, function(val) {
-      return exp(val);
-    });
+    return this.when(predicates, exp);
   };
 
   pattern = function() {
