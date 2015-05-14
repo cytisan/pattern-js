@@ -1,5 +1,7 @@
 # pattern-js #
 
+[![Join the chat at https://gitter.im/cytisan/pattern-js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cytisan/pattern-js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Fluent pattern matching for CoffeeScript and JavaScript.
 
 Implementation of **pattern-js** is inspired by [Functional C#].
